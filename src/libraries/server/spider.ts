@@ -55,3 +55,7 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 	if (raw) { return tagCheck }
 	else { return tagged };
 }
+
+export async function main(ns: NS) {
+	await spider(ns,true,false,true);
+}
