@@ -6,4 +6,7 @@ import { NS } from "@ns";
  * @param {boolean} terminal - True prints the tree to the terminal.
 */
 export async function spider(ns: NS, log: boolean = true, raw: boolean = true, terminal = false) {
+	var tagged = ['home'];
+	var indentMod = '|___';
+	var tagCheck = ['home'];
 }
