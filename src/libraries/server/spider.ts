@@ -27,4 +27,31 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 			}
 		}
 	}
+	if (log) {
+		for (let i = 0; i < tagged.length; i++) {
+			let barIndex = tagged[i].lastIndexOf('|');
+			let q = 1;
+			let foundLetter = false;
+			while (!foundLetter && !(i + q == tagged.length)) {
+				let matchingChar = tagged[i + q].charAt(barIndex);
+				if (matchingChar != ' ' && matchingChar != '_' && matchingChar != '|') {
+					foundLetter = true;
+				}
+				if (matchingChar == '|') {
+					for (q; q > 0; q--) {
+						let replacement = '|';
+						tagged[i + q] = tagged[i + q].substring(0, barIndex) + replacement + tagged[i + q].substring(barIndex + replacement.length);
+					}
+					foundLetter = true;
+				}
+				q++;
+			}
+		}
+		tagged.forEach(x => {
+			ns.print(x)
+			if(terminal) ns.tprint(x);
+		});
+	}
+	if (raw) { return tagCheck }
+	else { return tagged };
 }
