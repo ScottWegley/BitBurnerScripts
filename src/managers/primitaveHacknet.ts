@@ -6,7 +6,7 @@ export async function main(ns: NS) {
     while (active) {
         let curHacknodes = ns.hacknet.numNodes();
         let myNodes: NodeStats[] = [];
-        for (let i = 0; i <= curHacknodes; i++) {
+        /*for (let i = 0; i <= curHacknodes; i++) {
             if (i == curHacknodes) {
                 (ns.hacknet.purchaseNode() != -1 ? myNodes[i] = ns.hacknet.getNodeStats(i) : null);
             } else {
@@ -26,6 +26,7 @@ export async function main(ns: NS) {
                     }
                 } catch (err) { ns.print(err); }
             }
+        }*/
         }
         await ns.sleep(100);
     }
