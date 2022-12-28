@@ -9,4 +9,7 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 	var tagged = ['home'];
 	var indentMod = '|___';
 	var tagCheck = ['home'];
+
+	ns.disableLog('scan');
+
 }
