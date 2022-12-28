@@ -22,6 +22,15 @@ export async function main(ns: NS) {
 					lowServer = ns.getServer(servers[i]);
 				}
 			}
+			if (lowServer != undefined) {
+				for (var i = Math.pow(2, 20); i > lowServer.maxRam; i /= 2) {
+					if (ns.getServerMoneyAvailable('home') > ns.getPurchasedServerUpgradeCost(lowServer.hostname, i)) {
+						ns.upgradePurchasedServer(lowServer.hostname, i);
+						i = 0;
+					}
+				}
+			}
+			return;
 		}
 	}
 }
