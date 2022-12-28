@@ -10,6 +10,8 @@ import { ucChars } from "libraries/utils/CreativeConsole";
  * @param {boolean} tall - If true, the printout is tall, if not, it's long.
 */
 export async function report(ns: NS, serverName: string, lOD:number , print = true, terminal = false, tall = false) {
+    ns.disableLog('getServerSecurityLevel');
+    var server: Server = (typeof serverName === 'string' && ns.serverExists(serverName) ? ns.getServer(serverName) : ns.getServer('home'));
     try {
         let printout: string = ' ';
         printout = printout.replaceAll('true',ucChars.check).replaceAll('false',ucChars.x);
