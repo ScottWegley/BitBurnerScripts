@@ -13,5 +13,15 @@ export async function main(ns: NS) {
 				ns.purchaseServer(("Server_" + (servers.length + 1)), Math.pow(2, ramPower));
 				return;
 			}
+		} else { //We need to upgrade a server.
+			var lowestRAM = Math.pow(2, 20);
+			var lowServer: Server | undefined = undefined;
+			for (let i = 0; i < servers.length; i++) {
+				if (ns.getServer(servers[i]).maxRam < lowestRAM) {
+					lowestRAM = ns.getServer(servers[i]).maxRam;
+					lowServer = ns.getServer(servers[i]);
+				}
+			}
+		}
 	}
 }
