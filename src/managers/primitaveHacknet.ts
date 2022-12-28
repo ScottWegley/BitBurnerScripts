@@ -27,6 +27,14 @@ export async function main(ns: NS) {
                 } catch (err) { ns.print(err); }
             }
         }*/
+        for (let i = 0; i < curHacknodes; i++) {
+            myNodes[i] = ns.hacknet.getNodeStats(i);
+        }
+        let options: Array<number> = new Array();
+        for (let i = 0; i < curHacknodes; i++) {
+            options.push(Math.min(ns.hacknet.getCoreUpgradeCost(i, 1), ns.hacknet.getRamUpgradeCost(i, 1), ns.hacknet.getLevelUpgradeCost(i, 1)));
+        }
+        options.push(ns.hacknet.getPurchaseNodeCost());
         }
         await ns.sleep(100);
     }
