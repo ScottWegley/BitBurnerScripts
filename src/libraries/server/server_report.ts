@@ -10,6 +10,7 @@ import { ucChars } from "libraries/utils/CreativeConsole";
  * @param {boolean} tall - If true, the printout is tall, if not, it's long.
 */
 export async function report(ns: NS, serverName: string, lOD:number , print = true, terminal = false, tall = false) {
+    ns.disableLog('disableLog')
     ns.disableLog('getServerSecurityLevel');
     var server: Server = (typeof serverName === 'string' && ns.serverExists(serverName) ? ns.getServer(serverName) : ns.getServer('home'));
     try {
@@ -19,35 +20,35 @@ export async function report(ns: NS, serverName: string, lOD:number , print = tr
                 if (tall) {
 
                 } else {
-                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Ports: ${server.numOpenPortsRequired} || Cracked: ${server.openPortCount} || RAM: ${toReadable(server.maxRam)} || Pot. ${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()}`;
+                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Ports: ${server.numOpenPortsRequired} || Open: ${server.openPortCount} || RAM: ${toReadable(server.maxRam)} || Pot. ${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()}`;
                 }
                 break;
             case 2:
                 if (tall) {
 
                 } else {
-                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Cracked: ${server.openPortCount} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
+                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Open: ${server.openPortCount} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
                 }
                 break;
             case 3:
                 if (tall) {
 
                 } else {
-                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Cracked: ${server.openPortCount} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
+                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Open: ${server.openPortCount} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
                 }
                 break;
             case 4:
                 if (tall) {
 
                 } else {
-                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Cracked: ${server.openPortCount} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Hack Time: ${(ns.getHackTime(server.hostname)/1000).toFixed(2)} sec. || Grow Time: ${(ns.getGrowTime(server.hostname)/1000).toFixed(2)} sec. || Weak Time: ${(ns.getWeakenTime(server.hostname)/1000).toFixed(2)} sec. || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
+                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Open: ${server.openPortCount} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Hack Time: ${(ns.getHackTime(server.hostname)/1000).toFixed(2)} sec. || Grow Time: ${(ns.getGrowTime(server.hostname)/1000).toFixed(2)} sec. || Weak Time: ${(ns.getWeakenTime(server.hostname)/1000).toFixed(2)} sec. || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
                 }
                 break;
             case 5:
                 if (tall) {
 
                 } else {
-                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Cracked: ${server.openPortCount} || FTP: ${server.ftpPortOpen} || SSH: ${server.sshPortOpen} || HTTP: ${server.httpPortOpen} || SQL: ${server.sqlPortOpen} || SMTP: ${server.smtpPortOpen} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Hack Time: ${(ns.getHackTime(server.hostname)/1000).toFixed(2)} sec. || Grow Time: ${(ns.getGrowTime(server.hostname)/1000).toFixed(2)} sec. || Weak Time: ${(ns.getWeakenTime(server.hostname)/1000).toFixed(2)} sec. || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
+                    printout = `${server.hostname} || Root: ${server.hasAdminRights} || Backdoored: ${server.backdoorInstalled} || Ports: ${server.numOpenPortsRequired} || Open: ${server.openPortCount} || FTP: ${server.ftpPortOpen} || SSH: ${server.sshPortOpen} || HTTP: ${server.httpPortOpen} || SQL: ${server.sqlPortOpen} || SMTP: ${server.smtpPortOpen} || Security: ${ns.getServerSecurityLevel(server.hostname)} || RAM: ${toReadable(server.ramUsed)}/${toReadable(server.maxRam)} ${server.ramUsed / server.maxRam * 100}% || Hack Time: ${(ns.getHackTime(server.hostname)/1000).toFixed(2)} sec. || Grow Time: ${(ns.getGrowTime(server.hostname)/1000).toFixed(2)} sec. || Weak Time: ${(ns.getWeakenTime(server.hostname)/1000).toFixed(2)} sec. || Pot. ${ns.nFormat(server.moneyAvailable, '($0.00a)').toUpperCase()}/${ns.nFormat(server.moneyMax, '($0.00a)').toUpperCase()} ${(server.moneyMax != 0 ? server.moneyAvailable / server.moneyMax * 100 : 0)}%`;
                 }
                 break;
         }
