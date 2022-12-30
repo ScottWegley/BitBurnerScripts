@@ -1,7 +1,6 @@
-import { NS } from "@ns";
+import { NS, Server } from "@ns";
 
 import { spider } from "libraries/server/spider";
-import { toReadable } from "libraries/utils/ram_convert";
 import { report } from "libraries/server/server_report";
 
 /** @param {NS} ns */
@@ -25,6 +24,20 @@ export async function network_report(ns: NS, lOD: number, args: (string | number
 			name = name + ' ';
 		}
 
+		if (args.length == 0 || matchesSearch(ns, server, args)) {
 			ns.tprint(await report(ns, server.hostname, 1, false, false, false));
+		}
 	});
+}
+
+function matchesSearch(ns: NS, s: Server, args: (string | number | boolean)[]): boolean {
+	var params: string[] = [];
+	var value: string[] = [];
+	var outcome = true;
+	for (let i = 0; i < args.length; i++) {
+		if (i % 2 == 0) { params.push(args[i].toString()); }
+		else { value.push(args[i].toString()); }
+	}
+
+	return false;
 }
