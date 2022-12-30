@@ -48,14 +48,14 @@ export async function main(ns: NS) {
         let selection = options.indexOf(min!);
         if (selection == curHacknodes) { ns.hacknet.purchaseNode() }
         else {
-            if (ns.hacknet.upgradeCore(selection, 1)) {
-                ns.print(`Upgrading Node ${selection}'s Cores.`);
+            if (ns.hacknet.upgradeLevel(selection, 1)) {
+                ns.print(`Upgrading Node ${selection}'s Level.`);
             }
             else if (ns.hacknet.upgradeRam(selection, 1)) {
                 ns.print(`Upgrading Node ${selection}'s RAM.`);
             }
-            else if (ns.hacknet.upgradeLevel(selection, 1)) {
-                ns.print(`Upgrading Node ${selection}'s Level.`);
+            else if (ns.hacknet.upgradeCore(selection, 1)) {
+                ns.print(`Upgrading Node ${selection}'s Cores.`);
             }
         }
         await ns.sleep(100);
