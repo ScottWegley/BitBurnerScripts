@@ -9,11 +9,10 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 	var tagged = ['home'];
 	var indentMod = '|___';
 	var tagCheck = ['home'];
-
+	ns.disableLog('disableLog');
 	ns.disableLog('scan');
-
 	for (let i = 0; i < tagCheck.length; i++) {
-		let newScan = await ns.scan(tagCheck[i]);
+		let newScan = ns.scan(tagCheck[i]);
 		for (let j = newScan.length - 1; j >= 0; j--) {
 			if (tagCheck.indexOf(newScan[j]) === -1) { //If the server in the scan has not been tagged yet.
 				let indent = tagged[i].substring(0, tagged[i].lastIndexOf('_') + 1) + indentMod;
@@ -27,7 +26,7 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 			}
 		}
 	}
-	if (log) {
+	if (log || terminal) {
 		for (let i = 0; i < tagged.length; i++) {
 			let barIndex = tagged[i].lastIndexOf('|');
 			let q = 1;
@@ -48,7 +47,7 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 			}
 		}
 		tagged.forEach(x => {
-			ns.print(x)
+			if(log) ns.print(x);
 			if(terminal) ns.tprint(x);
 		});
 	}
@@ -57,5 +56,5 @@ export async function spider(ns: NS, log: boolean = true, raw: boolean = true, t
 }
 
 export async function main(ns: NS) {
-	await spider(ns,true,false,true);
+	await spider(ns,false,false,true);
 }
