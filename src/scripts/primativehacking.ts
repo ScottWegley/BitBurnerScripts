@@ -1,14 +1,14 @@
 import { NS } from "@ns";
 
 export async function main(ns:NS){
-    let s = ns.getServer();
+    let name = ns.getHostname();
     while(true){
-        if(s.hackDifficulty != s.minDifficulty){
-            await ns.weaken(s.hostname);
-        } else if (s.moneyAvailable != s.moneyMax){
-            await ns.grow(s.hostname);
+        if(ns.getServerSecurityLevel(name) != ns.getServerMinSecurityLevel(name)){
+            await ns.weaken(name);
+        } else if (ns.getServerMoneyAvailable(name) != ns.getServerMaxMoney(name)){
+            await ns.grow(name);
         } else {
-            await ns.hack(s.hostname);
+            await ns.hack(name);
         }
     }
 }
