@@ -58,6 +58,6 @@ export async function main(ns: NS) {
                 ns.print(`Upgrading Node ${selection}'s Cores.`);
             }
         }
-        await ns.sleep(100);
+        await ns.sleep(1000);
     }
 }
