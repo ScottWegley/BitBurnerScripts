@@ -8,8 +8,8 @@ export async function main(ns:NS) {
     servers.forEach((x:string|undefined) =>{
         let s = ns.getServer(x);
         if(s.hasAdminRights && !s.purchasedByPlayer){
-            ns.rm('/scripts/primativehacking.js',x!)
-            ns.scp('/scripts/primativehacking.js',x!);
+            ns.rm('/scripts/primativehacking.js',x!);
+            //ns.scp('/scripts/primativehacking.js',x!);
         }
     })
 }
